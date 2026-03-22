@@ -30,8 +30,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '1-clinician',
         patientId: '1-patient',
-        start: '2026-03-22T11:00:00.000Z',
-        end: '2026-03-22T11:00:00.000Z',
+        start: '2027-03-22T11:00:00.000Z',
+        end: '2027-03-22T11:00:00.000Z',
       });
 
     expect(res.status).toBe(400);
@@ -44,8 +44,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '1-clinician',
         patientId: '1-patient',
-        start: '2026-03-22T12:00:00.000Z',
-        end: '2026-03-22T11:00:00.000Z',
+        start: '2027-03-22T12:00:00.000Z',
+        end: '2027-03-22T11:00:00.000Z',
       });
 
     expect(res.status).toBe(400);
@@ -58,8 +58,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '1-clinician',
         patientId: '1-patient',
-        start: '2026-03-22T10:00:00.000Z',
-        end: '2026-03-22T11:00:00.000Z',
+        start: '2027-03-22T10:00:00.000Z',
+        end: '2027-03-22T11:00:00.000Z',
       });
 
     expect(res.status).toBe(403);
@@ -71,8 +71,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '1-clinician',
         patientId: '1-patient',
-        start: '2026-03-22T10:00:00.000Z',
-        end: '2026-03-22T11:00:00.000Z',
+        start: '2027-03-22T10:00:00.000Z',
+        end: '2027-03-22T11:00:00.000Z',
       });
 
     expect(res.status).toBe(403);
@@ -86,8 +86,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '2-clinician',
         patientId: '1-patient',
-        start: '2026-03-22T10:00:00.000Z',
-        end: '2026-03-22T11:00:00.000Z',
+        start: '2027-03-22T10:00:00.000Z',
+        end: '2027-03-22T11:00:00.000Z',
       })
       .expect(201);
 
@@ -98,8 +98,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '2-clinician',
         patientId: '2-patient',
-        start: '2026-03-22T12:00:00.000Z',
-        end: '2026-03-22T13:00:00.000Z',
+        start: '2027-03-22T12:00:00.000Z',
+        end: '2027-03-22T13:00:00.000Z',
       })
       .expect(201);
 
@@ -110,8 +110,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '2-clinician',
         patientId: '3-patient',
-        start: '2026-03-22T10:59:59.000Z',
-        end: '2026-03-22T11:59:59.000Z',
+        start: '2027-03-22T10:59:59.000Z',
+        end: '2027-03-22T11:59:59.000Z',
       });
 
     expect(overlap1.status).toBe(409);
@@ -123,8 +123,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '2-clinician',
         patientId: '3-patient',
-        start: '2026-03-22T10:59:59.000Z',
-        end: '2026-03-22T12:00:01.000Z',
+        start: '2027-03-22T10:59:59.000Z',
+        end: '2027-03-22T12:00:01.000Z',
       });
 
     expect(overlap2.status).toBe(409);
@@ -136,8 +136,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '2-clinician',
         patientId: '3-patient',
-        start: '2026-03-22T11:00:00.000Z',
-        end: '2026-03-22T12:00:00.000Z',
+        start: '2027-03-22T11:00:00.000Z',
+        end: '2027-03-22T12:00:00.000Z',
       });
 
     expect(touching.status).toBe(201);
@@ -150,8 +150,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '3-clinician',
         patientId: '3-patient',
-        start: '2026-03-22T24:00:00.000Z',
-        end: '2026-03-22T25:00:00.000Z',
+        start: '2027-03-22T24:00:00.000Z',
+        end: '2027-03-22T25:00:00.000Z',
       });
 
     const res2 = await request(app)
@@ -160,8 +160,8 @@ describe('POST /api/v1/appointments', () => {
       .send({
         clinicianId: '3-clinician',
         patientId: '3-patient',
-        start: '2026-03-22T10:00:00.000Z',
-        end: '2026-13-22T11:00:00.000Z',
+        start: '2027-03-22T10:00:00.000Z',
+        end: '2027-13-22T11:00:00.000Z',
       });
 
     expect(res1.status).toBe(400);
@@ -172,25 +172,25 @@ describe('POST /api/v1/appointments', () => {
     const cases = [
       {
         clinicianId: '4-clinician',
-        start: '2026-03-23T10:00:00.000Z',
-        end: '2026-03-23T11:00:00.000Z',
+        start: '2027-03-23T10:00:00.000Z',
+        end: '2027-03-23T11:00:00.000Z',
       },
       {
         patientId: '4-patient',
-        start: '2026-03-23T10:00:00.000Z',
-        end: '2026-03-23T11:00:00.000Z',
+        start: '2027-03-23T10:00:00.000Z',
+        end: '2027-03-23T11:00:00.000Z',
       },
       {
         clinicianId: '',
         patientId: '4-patient',
-        start: '2026-03-23T10:00:00.000Z',
-        end: '2026-03-23T11:00:00.000Z',
+        start: '2027-03-23T10:00:00.000Z',
+        end: '2027-03-23T11:00:00.000Z',
       },
       {
         clinicianId: '4-clinician',
         patientId: '',
-        start: '2026-03-23T10:00:00.000Z',
-        end: '2026-03-23T11:00:00.000Z',
+        start: '2027-03-23T10:00:00.000Z',
+        end: '2027-03-23T11:00:00.000Z',
       },
       {},
     ];

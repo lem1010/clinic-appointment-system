@@ -24,8 +24,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "1-clinician",
     "patientId": "1-patient",
-    "start": "2026-03-22T11:00:00.000Z",
-    "end": "2026-03-22T11:00:00.000Z"
+    "start": "2027-03-22T11:00:00.000Z",
+    "end": "2027-03-22T11:00:00.000Z"
   }'
 
 # Should return 400 Bad Request
@@ -36,8 +36,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "1-clinician",
     "patientId": "1-patient",
-    "start": "2026-03-22T12:00:00.000Z",
-    "end": "2026-03-22T11:00:00.000Z"
+    "start": "2027-03-22T12:00:00.000Z",
+    "end": "2027-03-22T11:00:00.000Z"
   }'
 
 ----------------------------------------------------------
@@ -52,8 +52,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "1-clinician",
     "patientId": "1-patient",
-    "start": "2026-03-22T10:00:00.000Z",
-    "end": "2026-03-22T11:00:00.000Z"
+    "start": "2027-03-22T10:00:00.000Z",
+    "end": "2027-03-22T11:00:00.000Z"
   }'
 
 ----------------------------------------------------------
@@ -67,8 +67,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "1-clinician",
     "patientId": "1-patient",
-    "start": "2026-03-22T10:00:00.000Z",
-    "end": "2026-03-22T11:00:00.000Z"
+    "start": "2027-03-22T10:00:00.000Z",
+    "end": "2027-03-22T11:00:00.000Z"
   }'
 
 ----------------------------------------------------------
@@ -83,8 +83,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "2-clinician",
     "patientId": "1-patient",
-    "start": "2026-03-22T10:00:00.000Z",
-    "end": "2026-03-22T11:00:00.000Z"
+    "start": "2027-03-22T10:00:00.000Z",
+    "end": "2027-03-22T11:00:00.000Z"
   }'
 
 # Should return 201 Created
@@ -95,8 +95,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "2-clinician",
     "patientId": "2-patient",
-    "start": "2026-03-22T12:00:00.000Z",
-    "end": "2026-03-22T13:00:00.000Z"
+    "start": "2027-03-22T12:00:00.000Z",
+    "end": "2027-03-22T13:00:00.000Z"
   }'
 
 # Should return 409 Conflict
@@ -107,8 +107,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "2-clinician",
     "patientId": "3-patient",
-    "start": "2026-03-22T10:59:59.000Z",
-    "end": "2026-03-22T11:59:59.000Z"
+    "start": "2027-03-22T10:59:59.000Z",
+    "end": "2027-03-22T11:59:59.000Z"
   }'
 
 # Should return 409 Conflict
@@ -119,8 +119,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "2-clinician",
     "patientId": "3-patient",
-    "start": "2026-03-22T10:59:59.000Z",
-    "end": "2026-03-22T12:00:01.000Z"
+    "start": "2027-03-22T10:59:59.000Z",
+    "end": "2027-03-22T12:00:01.000Z"
   }'
 	
 # Should return 201 Created
@@ -131,8 +131,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "2-clinician",
     "patientId": "3-patient",
-    "start": "2026-03-22T11:00:00.000Z",
-    "end": "2026-03-22T12:00:00.000Z"
+    "start": "2027-03-22T11:00:00.000Z",
+    "end": "2027-03-22T12:00:00.000Z"
   }'
 
 ----------------------------------------------------------
@@ -147,8 +147,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "3-clinician",
     "patientId": "3-patient",
-    "start": "2026-03-22T24:00:00.000Z",
-    "end": "2026-03-22T25:00:00.000Z"
+    "start": "2027-03-22T24:00:00.000Z",
+    "end": "2027-03-22T25:00:00.000Z"
   }'
 
 # Should return 400 Bad Request
@@ -159,8 +159,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "3-clinician",
     "patientId": "3-patient",
-    "start": "2026-03-22T10:00:00.000Z",
-    "end": "2026-13-22T11:00:00.000Z"
+    "start": "2027-03-22T10:00:00.000Z",
+    "end": "2027-13-22T11:00:00.000Z"
   }'
 
 ----------------------------------------------------------
@@ -173,8 +173,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -H "X-Role: patient" \
   -d '{
     "clinicianId": "4-clinician",
-    "start": "2026-03-23T10:00:00.000Z",
-    "end": "2026-03-23T11:00:00.000Z"
+    "start": "2027-03-23T10:00:00.000Z",
+    "end": "2027-03-23T11:00:00.000Z"
   }'
 
 # Should return 400 Bad Request
@@ -184,8 +184,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -H "X-Role: patient" \
   -d '{
     "patientId": "4-patient",
-    "start": "2026-03-23T10:00:00.000Z",
-    "end": "2026-03-23T11:00:00.000Z"
+    "start": "2027-03-23T10:00:00.000Z",
+    "end": "2027-03-23T11:00:00.000Z"
   }'
 
 # Should return 400 Bad Request
@@ -196,8 +196,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "",
     "patientId": "4-patient",
-    "start": "2026-03-23T10:00:00.000Z",
-    "end": "2026-03-23T11:00:00.000Z"
+    "start": "2027-03-23T10:00:00.000Z",
+    "end": "2027-03-23T11:00:00.000Z"
   }'
 
 # Should return 400 Bad Request
@@ -208,8 +208,8 @@ curl -s -w "\nStatus: %{http_code}\n" \
   -d '{
     "clinicianId": "4-clinician",
     "patientId": "",
-    "start": "2026-03-23T10:00:00.000Z",
-    "end": "2026-03-23T11:00:00.000Z"
+    "start": "2027-03-23T10:00:00.000Z",
+    "end": "2027-03-23T11:00:00.000Z"
   }'
 
 

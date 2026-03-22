@@ -98,26 +98,113 @@ Tests cover:
 
 ---
 
-## Example Requests
+## Example Curl Requests
 
 A full set of curl-based test scenarios is provided in:
 
 ```
-docs/curl-examples.sh
+src/docs/curl-examples.sh
 ```
 
-Example: create appointment
+### POST /appointments
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/appointments \
+# Should return 201 Created
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X POST http://localhost:3000/api/v1/appointments \
   -H "Content-Type: application/json" \
   -H "X-Role: patient" \
   -d '{
-    "clinicianId": "1-clinician",
+    "clinicianId": "2-clinician",
     "patientId": "1-patient",
-    "start": "2026-03-25T09:00:00.000Z",
-    "end": "2026-03-25T10:00:00.000Z"
+    "start": "2027-03-22T10:00:00.000Z",
+    "end": "2027-03-22T11:00:00.000Z"
   }'
+
+# Should return 201 Created
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X POST http://localhost:3000/api/v1/appointments \
+  -H "Content-Type: application/json" \
+  -H "X-Role: patient" \
+  -d '{
+    "clinicianId": "2-clinician",
+    "patientId": "2-patient",
+    "start": "2027-03-22T12:00:00.000Z",
+    "end": "2027-03-22T13:00:00.000Z"
+  }'
+
+# Should return 409 Conflict
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X POST http://localhost:3000/api/v1/appointments \
+  -H "Content-Type: application/json" \
+  -H "X-Role: patient" \
+  -d '{
+    "clinicianId": "2-clinician",
+    "patientId": "3-patient",
+    "start": "2027-03-22T10:59:59.000Z",
+    "end": "2027-03-22T11:59:59.000Z"
+  }'
+
+# Should return 409 Conflict
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X POST http://localhost:3000/api/v1/appointments \
+  -H "Content-Type: application/json" \
+  -H "X-Role: patient" \
+  -d '{
+    "clinicianId": "2-clinician",
+    "patientId": "3-patient",
+    "start": "2027-03-22T10:59:59.000Z",
+    "end": "2027-03-22T12:00:01.000Z"
+  }'
+
+# Should return 201 Created
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X POST http://localhost:3000/api/v1/appointments \
+  -H "Content-Type: application/json" \
+  -H "X-Role: patient" \
+  -d '{
+    "clinicianId": "2-clinician",
+    "patientId": "3-patient",
+    "start": "2027-03-22T11:00:00.000Z",
+    "end": "2027-03-22T12:00:00.000Z"
+  }'
+```
+
+### GET /clinicians/{id}/appointments
+
+Supports optional ```from``` and ```to``` ISO datetime query params per behaviour specs.
+
+```bash
+# Should return 200 OK with appointments start >= UTC now
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X GET "http://localhost:3000/api/v1/clinicians/2-clinician/appointments" \
+  -H "X-Role: clinician"
+
+```
+
+```bash
+# Invalid from/to ISO datetimes: Should return 400 Bad Request
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X GET "http://localhost:3000/api/v1/clinicians/2-clinician/appointments?from=2030-03-30T25:00:00.000Z" \
+  -H "X-Role: clinician"
+```
+
+### GET /appointments
+
+Also supports optional ```from``` and ```to``` ISO datetime query params per behaviour specs.
+
+```bash
+# Should return 200 OK with appointments i.e. start >= UTC now
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X GET "http://localhost:3000/api/v1/appointments" \
+  -H "X-Role: admin"
+```
+
+```bash
+# Role enforcement: Should return 403 Forbidden
+curl -s -w "\nStatus: %{http_code}\n" \
+  -X GET "http://localhost:3000/api/v1/appointments" \
+  -H "X-Role: patient"
 ```
 
 ---
